@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chordbook - CMGI Norddeutschland</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Fira+Code:wght@500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --accent: #e11d48;
+            --bg-grad-1: #e0eafc;
+            --bg-grad-2: #cfdef3;
+        }
+        
+        body { 
+            font-family: 'Outfit', sans-serif; 
+            background: linear-gradient(135deg, var(--bg-grad-1) 0%, var(--bg-grad-2) 100%); 
+            background-attachment: fixed;
+            color: #1e293b; 
+            scroll-behavior: smooth;
+        }
+
+        /* Composants réutilisables pour alléger le HTML */
+        .glass { 
+            background: rgba(255, 255, 255, 0.85); 
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6); 
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07); 
+        }
+
+        .song-card {
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            scroll-margin-top: 2rem;
+        }
+
+        .song-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+
+        .lyrics {
+            white-space: pre-line;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: #334155;
+        }
+
+        .chord { 
+            font-family: 'Fira Code', monospace; 
+            color: var(--accent);
+            font-weight: 700; 
+            background: rgba(225, 29, 72, 0.05);
+            padding: 0.1rem 0.2rem;
+            border-radius: 0.25rem;
+        }
+
+        .toc-link {
+            display: block;
+            padding: 0.5rem 1rem;
+            color: #475569;
+            text-decoration: none;
+            border-left: 3px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .toc-link:hover {
+            background: rgba(30, 58, 138, 0.05);
+            border-left: 3px solid var(--primary);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Styles d'impression */
+        @media print {
+            body { background: white; }
+            .no-print { display: none !important; }
+            .song-card { background: none; box-shadow: none; border: none; page-break-inside: avoid; padding: 0; margin-bottom: 3rem; }
+            .lyrics { font-size: 12pt; }
+            .song-title { font-size: 18pt; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col md:flex-row">
+
+    <a href="#top" class="fixed bottom-4 right-4 bg-blue-900 text-white p-3 rounded-full shadow-lg z-50 md:hidden no-print">↑</a>
+
+    <aside class="w-full md:w-80 h-screen sticky top-0 glass border-r border-white/50 flex flex-col z-40 no-print">
+        <div class="p-6 border-b border-slate-200">
+            <h1 class="text-2xl font-extrabold text-blue-900 leading-tight" id="top">CMGI Chordbook</h1>
+            <p class="text-sm text-slate-500 font-medium mt-1">Chants de louange</p>
+        </div>
+        <div class="overflow-y-auto flex-1 py-4">
+            <a href="#chord-table" class="toc-link font-bold text-pink-600">🎸 Tableau des Accords</a>
+            <div class="my-4 border-t border-slate-200"></div>
+            
+            <a href="#s-alleluia-amen-eh-yahweh" class="toc-link">Alleluia Amen Eh Yahweh</a>
+<a href="#s-alleluia-you-have-won-the-victory" class="toc-link">Alleluia You have won the victory</a>
+<a href="#s-alles-was-atmet-lobe-den-herrn" class="toc-link">Alles was atmet, lobe den Herrn</a>
+<a href="#s-awesome-god" class="toc-link">Awesome God</a>
+<a href="#s-ben-low-and-see-what-the-lord-can-do" class="toc-link">Ben low and see what the Lord can do</a>
+<a href="#s-better-is-one-day" class="toc-link">Better is one day</a>
+<a href="#s-build-your-church" class="toc-link">Build Your Church</a>
+<a href="#s-blessed-assurance" class="toc-link">Blessed Assurance</a>
+<a href="#s-blessed-assurance-this-is-my-story" class="toc-link">Blessed Assurance - This is My Story</a>
+<a href="#s-cest-si-bon-de-louer" class="toc-link">C‘est si bon de louer</a>
+<a href="#s-car-toi-seul-est-dieu" class="toc-link">Car toi seul est Dieu</a>
+<a href="#s-ce-que-dieu-fait-memerveille" class="toc-link">Ce que Dieu fait m’émerveille</a>
+<a href="#s-celebrez-jesus" class="toc-link">Celebrez Jesus</a>
+<a href="#s-celebrez-leternel-let-us-praise-our-lord" class="toc-link">Celebrez l‘Eternel / Let us praise our Lord</a>
+<a href="#s-cest-si-bon-de-louer-son-nom" class="toc-link">C'est si bon de louer Son nom</a>
+<a href="#s-combien-de-chemins-wie-viele-wege" class="toc-link">Combien de Chemins / Wie viele Wege</a>
+<a href="#s-come-now-is-the-time-to-worship" class="toc-link">Come, now is the time to worship</a>
+<a href="#s-comment-te-dire-o-tendre-pere-merci" class="toc-link">Comment te dire Ô tendre Père merci</a>
+<a href="#s-danke-jesus" class="toc-link">Danke Jesus</a>
+<a href="#s-days-of-elijah" class="toc-link">Days of Elijah</a>
+<a href="#s-deine-gnade-reicht-aus" class="toc-link">Deine Gnade reicht aus</a>
+<a href="#s-der-einzige" class="toc-link">Der Einzige</a>
+<a href="#s-der-heilige-geist" class="toc-link">Der heilige Geist</a>
+<a href="#s-der-lowe-und-das-lamm" class="toc-link">Der Löwe und das Lamm</a>
+<a href="#s-desert-song" class="toc-link">Desert Song</a>
+<a href="#s-die-liebe-selbst" class="toc-link">Die Liebe Selbst</a>
+<a href="#s-dir-gebuhr-die-ehre" class="toc-link">Dir gebührt die Ehre</a>
+<a href="#s-dir-gehort-mein-lob" class="toc-link">Dir gehört mein Lob</a>
+<a href="#s-draw-me-close-to-you" class="toc-link">Draw me close to you</a>
+<a href="#s-du-bist-der-hochste-o-herr" class="toc-link">Du bist der höchste, o Herr</a>
+<a href="#s-du-bist-wunderbar-iye" class="toc-link">Du bist Wunderbar Iyé</a>
+<a href="#s-du-bist-wunderbar-deine-werke-sind-wunderbar" class="toc-link">Du bist wunderbar, deine Werke sind wunderbar</a>
+<a href="#s-du-du-bist-gott" class="toc-link">Du, du bist Gott</a>
+<a href="#s-ebenezer" class="toc-link">Ebenezer</a>
+<a href="#s-er-sitzt-auf-dem-thron" class="toc-link">Er sitzt auf dem Thron</a>
+<a href="#s-every-praise" class="toc-link">Every Praise</a>
+<a href="#s-god-is-fighting-for-us-in-jesus-name" class="toc-link">God is fighting for us/ in Jesus Name</a>
+<a href="#s-gott-halt-mich-in-der-hand" class="toc-link">Gott hält mich in der Hand</a>
+<a href="#s-hallelujah" class="toc-link">Hallelujah</a>
+<a href="#s-he-is-able" class="toc-link">He is able</a>
+<a href="#s-he-is-god-he-is-god-he-is-god" class="toc-link">He is God He is God He is God</a>
+<a href="#s-heilig-bist-du" class="toc-link">Heilig bist Du</a>
+<a href="#s-heilig-bist-du-herr-der-einzige" class="toc-link">Heilig bist du Herr/ Der Einzige</a>
+<a href="#s-herr-deine-gnade" class="toc-link">Herr deine Gnade</a>
+<a href="#s-herr-dein-name-sei-erhoht" class="toc-link">Herr, dein Name sei erhöht</a>
+<a href="#s-herr-deine-gnade-upper" class="toc-link">HERR, DEINE GNADE</a>
+<a href="#s-herr-deine-gnade-fliesst-auf-mein-leben" class="toc-link">Herr, deine Gnade fließt auf mein Leben</a>
+<a href="#s-hoher" class="toc-link">Höher</a>
+<a href="#s-holy-spirit-we-honor-you" class="toc-link">Holy Spirit we honor You</a>
+<a href="#s-holy-holy-holy" class="toc-link">Holy, holy, holy</a>
+<a href="#s-hosanna-israel-houghton" class="toc-link">Hosanna( Israel Houghton)</a>
+<a href="#s-how-great-thou-art" class="toc-link">How great thou Art</a>
+<a href="#s-i-enter-the-holy-of-holies" class="toc-link">I enter the Holy of Holies</a>
+<a href="#s-i-go-dance" class="toc-link">I Go Dance</a>
+<a href="#s-i-know-who-i-am" class="toc-link">I Know Who I Am</a>
+<a href="#s-i-rejoice" class="toc-link">I rejoice</a>
+<a href="#s-i-see-before-me-just-two-wills" class="toc-link">I see before me just two wills</a>
+<a href="#s-i-surrender" class="toc-link">I surrender</a>
+<a href="#s-i-will-do-your-will" class="toc-link">I will do your will</a>
+<a href="#s-i-will-enter-in-his-court" class="toc-link">I will enter in his court</a>
+<a href="#s-i-wont-go-back" class="toc-link">I Won't Go Back</a>
+<a href="#s-ich-rufe-hallelujah" class="toc-link">ICH RUFE HALLELUJAH</a>
+<a href="#s-il-agira" class="toc-link">il agira</a>
+<a href="#s-il-est-dieu-he-is-god-er-ist-gott" class="toc-link">Il est Dieu/He is God/Er ist Gott</a>
+<a href="#s-immer-mehr-von-dir-herr" class="toc-link">Immer mehr von dir Herr</a>
+<a href="#s-in-jesus-name" class="toc-link">In Jesus name</a>
+<a href="#s-ist-es-heute-wahr" class="toc-link">Ist es heute wahr</a>
+<a href="#s-ive-got-my-mind-made-up" class="toc-link">I've got my mind made up</a>
+<a href="#s-jaime-cette-famille-de-dieu" class="toc-link">J’aime cette famille de Dieu</a>
+<a href="#s-je-veux-me-rejouis-dans-le-dieu-de-mon-salut" class="toc-link">je veux me réjouis dans le Dieu de mon salut</a>
+<a href="#s-jehovah-jireh" class="toc-link">Jehovah Jireh</a>
+<a href="#s-jesus-in-meinem-haus" class="toc-link">Jesus in meinem Haus</a>
+<a href="#s-jesus-is-the-answer" class="toc-link">Jesus is the answer</a>
+<a href="#s-jesus-ist-der-herr" class="toc-link">Jesus ist der Herr</a>
+<a href="#s-jesus-iye" class="toc-link">Jesus iye</a>
+<a href="#s-jesus-lebt" class="toc-link">Jesus lebt</a>
+<a href="#s-jesus-meine-hoffnung-lebt" class="toc-link">Jesus meine Hoffnung lebt</a>
+<a href="#s-jesus-nimm-zu-in-meinem-lleben" class="toc-link">Jesus nimm zu in meinem lleben</a>
+<a href="#s-jesus-wir-erheben-dich" class="toc-link">Jesus wir erheben dich</a>
+<a href="#s-jireh" class="toc-link">Jireh</a>
+<a href="#s-keiner-ist-wie-du" class="toc-link">Keiner ist wie Du</a>
+<a href="#s-king-of-glory-o-roi-de-gloire" class="toc-link">King of glory / O Roi de gloire</a>
+<a href="#s-king-of-kings" class="toc-link">King of kings</a>
+<a href="#s-king-of-our-heart" class="toc-link">King of our heart</a>
+<a href="#s-komm-komm" class="toc-link">Komm, komm</a>
+<a href="#s-komm-komm-du-sohn-des-hochsten" class="toc-link">Komm, komm, du Sohn des Höchsten</a>
+<a href="#s-le-fils-de-dieu-est-la-reponse-der-sohn-gottes-ist-die-antwort" class="toc-link">Le fils de Dieu est la réponse / Der Sohn Gottes ist die Antwort</a>
+<a href="#s-le-saint-esprit" class="toc-link">Le Saint Esprit</a>
+<a href="#s-licht-dieser-welt" class="toc-link">Licht dieser Welt</a>
+<a href="#s-lifted-ive-been-lifted-by-the-lord" class="toc-link">Lifted I've been Lifted by the lord</a>
+<a href="#s-lunique-et-le-veritable" class="toc-link">L'unique et le veritable</a>
+<a href="#s-ma-vie-a-ete-cree" class="toc-link">Ma vie a été créé</a>
+<a href="#s-majestat" class="toc-link">Majestät</a>
+<a href="#s-mein-erloser-lebt" class="toc-link">Mein Erlöser lebt</a>
+<a href="#s-mein-gott-ist-grosser" class="toc-link">Mein Gott Ist Größer</a>
+<a href="#s-mighty-to-save" class="toc-link">MIGHTY TO SAVE</a>
+<a href="#s-mutig-komm-ich-vor-den-thron" class="toc-link">Mutig komm ich vor den Thron</a>
+<a href="#s-my-jesus" class="toc-link">My Jesus</a>
+<a href="#s-my-life-is-in-your-hands" class="toc-link">My Life Is In Your Hands</a>
+<a href="#s-nahe-zu-dir" class="toc-link">Nähe zu dir</a>
+<a href="#s-no-longer-slaves" class="toc-link">No longer Slaves</a>
+<a href="#s-nous-te-louons-tu-es-dieu" class="toc-link">Nous te Louons tu es Dieu</a>
+<a href="#s-nul-nest-comme-toi-compile" class="toc-link">Nul n'est comme toi (Compile)</a>
+<a href="#s-oh-am-kreuz" class="toc-link">Oh am Kreuz</a>
+<a href="#s-oh-il-est-vivant" class="toc-link">Oh il est vivant</a>
+<a href="#s-pass-me-not" class="toc-link">Pass me not</a>
+<a href="#s-praise-the-lord-o-my-soul" class="toc-link">Praise the Lord O my Soul</a>
+<a href="#s-reckless-love" class="toc-link">Reckless love</a>
+<a href="#s-ruft-zu-dem-herrn" class="toc-link">Ruft zu dem Herrn</a>
+<a href="#s-seigneur-jesus-tu-me-suffis" class="toc-link">Seigneur Jésus Tu me suffis</a>
+<a href="#s-si-tu-veux-le-louer" class="toc-link">Si tu veux le louer</a>
+<a href="#s-sing-for-joy" class="toc-link">Sing for joy</a>
+<a href="#s-so-bist-nur-du" class="toc-link">So bist nur du</a>
+<a href="#s-so-gross-ist-der-herr" class="toc-link">So groß ist der Herr</a>
+<a href="#s-someone-knocking-at-the-door" class="toc-link">Someone knocking at the door</a>
+<a href="#s-soyez-benis-au-nom-de-jesus" class="toc-link">Soyez bénis au nom de Jésus</a>
+<a href="#s-tading-my-sorrows" class="toc-link">Tading my sorrows</a>
+<a href="#s-thank-you-lord" class="toc-link">Thank You Lord</a>
+<a href="#s-the-goodness-of-god" class="toc-link">The goodness of God</a>
+<a href="#s-the-heart-of-worship" class="toc-link">The heart of worship</a>
+<a href="#s-the-name-of-jesus" class="toc-link">The Name of Jesus</a>
+<a href="#s-there-shall-be-showers-of-blessing" class="toc-link">There shall be showers of blessing</a>
+<a href="#s-today-is-the-day-of-salvation" class="toc-link">Today is the day of salvation</a>
+<a href="#s-toi-seul-est-digne" class="toc-link">Toi seul est digne</a>
+<a href="#s-too-faithful" class="toc-link">Too faithful</a>
+<a href="#s-tout-joyeux-de-nous-retrouver" class="toc-link">Tout joyeux de nous retrouver</a>
+<a href="#s-tu-es-dieu" class="toc-link">Tu es Dieu</a>
+<a href="#s-venez-voir" class="toc-link">Venez voir</a>
+<a href="#s-walking-with-jesus" class="toc-link">Walking with Jesus</a>
+<a href="#s-was-fur-ein-gott" class="toc-link">Was für ein Gott</a>
+<a href="#s-wasser-wird-wein-remix" class="toc-link">Wasser wird Wein Remix</a>
+<a href="#s-way-maker" class="toc-link">Way Maker</a>
+<a href="#s-we-are-bown-down" class="toc-link">we are bown down</a>
+<a href="#s-we-give-praise-to-god" class="toc-link">We give Praise to God</a>
+<a href="#s-what-a-beautiful-name" class="toc-link">What a Beautiful Name</a>
+<a href="#s-who-has-the-final-say" class="toc-link">Who Has the Final Say</a>
+<a href="#s-wie-schon-dieser-name-ist" class="toc-link">Wie schön dieser Name ist</a>
+<a href="#s-wie-viele-wege-hast-du" class="toc-link">Wie viele Wege hast du</a>
+<a href="#s-wir-erheben-dich" class="toc-link">Wir erheben dich</a>
+<a href="#s-wir-sind-hier-zusammen" class="toc-link">Wir sind hier zusammen</a>
+<a href="#s-wo-ich-auch-stehe" class="toc-link">Wo ich auch stehe</a>
+<a href="#s-wonderful-wonder" class="toc-link">Wonderful wonder</a>
+<a href="#s-you-are-a-great-god" class="toc-link">You are a great God</a>
+<a href="#s-you-are-alpha-and-omega" class="toc-link">You are Alpha and Omega</a>
+<a href="#s-you-are-god" class="toc-link">You Are God</a>
+<a href="#s-you-are-so-great" class="toc-link">You are so Great</a>
+<a href="#s-you-are-the-most-high-god" class="toc-link">You are the most high God</a>
+<a href="#s-you-are-yahweh" class="toc-link">You are Yahweh</a>
+<a href="#s-you-deserve" class="toc-link">You deserve</a>
+<a href="#s-you-are-god-alone" class="toc-link">You are God alone</a>
+        </div>
+    </aside>
+
+    <main class="flex-1 p-4 md:p-8 overflow-x-hidden">
+
+        <div class="text-center md:text-left mb-12 mt-8">
+            <span class="px-4 py-1 bg-blue-100 text-blue-800 text-xs font-bold uppercase rounded-full tracking-widest border border-blue-200">Recueil de Chants 2026</span>
+            <h2 class="text-5xl md:text-6xl font-extrabold text-slate-800 mt-6 mb-2 tracking-tight">Songs of Praise</h2>
+            <p class="text-xl text-slate-600">Louange • Lobpreislieder • Worship</p>
+        </div>
+
+        <section id="chord-table" class="glass song-card">
+            <h3 class="song-title">🎼 Major Key Chord Table</h3>
+            <div class="overflow-x-auto mt-4">
+                <table class="w-full text-left">
+                    <thead>
+                        <tr class="bg-slate-100 text-slate-700">
+                            <th class="p-3 font-bold rounded-tl-lg">Key</th>
+                            <th class="p-3 font-bold">I</th>
+                            <th class="p-3 font-bold">ii</th>
+                            <th class="p-3 font-bold">iii</th>
+                            <th class="p-3 font-bold">IV</th>
+                            <th class="p-3 font-bold">V</th>
+                            <th class="p-3 font-bold">vi</th>
+                            <th class="p-3 font-bold rounded-tr-lg">vii°</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-slate-800 text-lg">
+                        <tr class="border-b border-slate-200"><td class="p-3 font-bold text-blue-700">C Major</td><td class="p-3 font-bold">C</td><td class="p-3">Dm</td><td class="p-3">Em</td><td class="p-3">F</td><td class="p-3">G</td><td class="p-3">Am</td><td class="p-3 text-slate-400">Bdim</td></tr>
+                        <tr class="border-b border-slate-200 bg-slate-50/50"><td class="p-3 font-bold text-blue-700">G Major</td><td class="p-3 font-bold">G</td><td class="p-3">Am</td><td class="p-3">Bm</td><td class="p-3">C</td><td class="p-3">D</td><td class="p-3">Em</td><td class="p-3 text-slate-400">F♯dim</td></tr>
+                        <tr class="border-b border-slate-200"><td class="p-3 font-bold text-blue-700">F Major</td><td class="p-3 font-bold">F</td><td class="p-3">Gm</td><td class="p-3">Am</td><td class="p-3">B♭</td><td class="p-3">C</td><td class="p-3">Dm</td><td class="p-3 text-slate-400">Edim</td></tr>
+                        <tr class="border-b border-slate-200 bg-slate-50/50"><td class="p-3 font-bold text-blue-700">D Major</td><td class="p-3 font-bold">D</td><td class="p-3">Em</td><td class="p-3">F♯m</td><td class="p-3">G</td><td class="p-3">A</td><td class="p-3">Bm</td><td class="p-3 text-slate-400">C♯dim</td></tr>
+                        <tr class="border-b border-slate-200"><td class="p-3 font-bold text-blue-700">E Major</td><td class="p-3 font-bold">E</td><td class="p-3">F♯m</td><td class="p-3">G♯m</td><td class="p-3">A</td><td class="p-3">B</td><td class="p-3">C♯m</td><td class="p-3 text-slate-400">D♯dim</td></tr>
+                        <tr><td class="p-3 font-bold text-blue-700">A Major</td><td class="p-3 font-bold">A</td><td class="p-3">Bm</td><td class="p-3">C♯m</td><td class="p-3">D</td><td class="p-3">E</td><td class="p-3">F♯m</td><td class="p-3 text-slate-400">G♯dim</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <article id="s-adonai" class="glass song-card">
+            <h2 class="song-title">Adonai / Er sitzt auf dem Thron</h2>
+            <div class="lyrics">Er sitzt auf dem Thron
+            Und regiert in Majestät
+            Sein Name sei erhöht
+            
+            Gelobt sei der Nam' des Herrn
+            Gelobt, Gelobt
+            Sei der Nam' des Herrn
+            
+            Lobe: loben, loben, loben
+            Unser‘ Allmächtigen Gott
+            
+            Preise: Ja wir preisen, preisen, preisen
+            Unser‘ wunderbaren Gott
+            
+            Tanze: Ja wir tanzen, wir tanzen
+            Für unser‘ Demütigen Gott
+            
+            <span class="text-sm font-bold text-blue-600 mt-4 block">[English]</span>
+            From the risin' of the sun
+            To the settin' of the same
+            Your name is to be hallowed
+            Praise be the name of the Lord</div>
+        </article>
+
+        <article id="s-alleluia" class="glass song-card">
+            <h2 class="song-title">Alleluia Amen Eh Yahweh</h2>
+            <div class="lyrics">Eh Yahwe
+            Po yo za li Nzambe
+            Oh Yo ZA Nzambe
+            
+            ALLELUIA Amen x3
+            Oh Yo ZA Nzambe
+            
+            Je veux te louer mon Dieu - amen
+            A chaque jour a chaque heure - amen
+            Sois elevé mon Sauveur - Oh Yo ZA Nzambe
+            
+            Tu m'a reveillé ce matin - amen
+            pour te dire combien je t'aime - amen
+            Sois élevé Mon Sauveur - Oh Yo ZA Nzambe
+            
+            L'Éternel est mon berger
+            Je ne manquerai de rien
+            Quand Il est á mes cotés
+            Je suis en sécurité
+            Il connais tous mes besoins
+            Mon avenir et mon lendemain</div>
+        </article>
+
+        <article id="s-anthem" class="glass song-card">
+            <h2 class="song-title">The Anthem (Todd Dulaney)</h2>
+            <div class="lyrics"><span class="text-pink-600 font-bold text-sm">Key: C</span>
+            <span class="font-bold text-blue-600">[Verse]</span>
+            <span class="chord">C2</span> <span class="chord">Em7</span> <span class="chord">D</span>
+            By His stripes we are healed
+            <span class="chord">C2</span> <span class="chord">Em7</span> <span class="chord">D</span>
+            By His nail piecered hands we're free
+            <span class="chord">C2</span> <span class="chord">Em7</span> <span class="chord">D</span>
+            By His blood we're washed clean
+            Now we have the victory
+            
+            <span class="font-bold text-blue-600">[Pre-chorus]</span>
+            <span class="chord">Am</span>
+            The pow'r of sin is broken
+            <span class="chord">G/B</span> <span class="chord">D</span> <span class="chord">D/F#</span> <span class="chord">G</span>
+            Jesus overcame it all
+            
+            <span class="font-bold text-blue-600">[Chorus 1]</span>
+            <span class="chord">Em</span> <span class="chord">D/F#</span> <span class="chord">G</span> <span class="chord">Am</span> <span class="chord">Em</span> <span class="chord">D</span>
+            Hallelujah You have won the victory
+            <span class="chord">Em</span> <span class="chord">D/F#</span> <span class="chord">G</span> <span class="chord">Am</span> <span class="chord">Em</span> <span class="chord">D</span>
+            Hallelujah You have won it all for me
+            <span class="chord">C2</span> <span class="chord">Em</span>
+            'Cause death could not hold You down
+            <span class="chord">D</span> <span class="chord">Am</span> <span class="chord">Em</span>
+            You are the risen King</div>
+        </article>
+
+        <article id="s-alles" class="glass song-card">
+            <h2 class="song-title">Alles was atmet, lobe den Herrn</h2>
+            <div class="lyrics"><span class="text-pink-600 font-bold text-sm">Key: G</span>
+            <span class="font-bold text-blue-600">[Verse 1]</span>
+            <span class="chord">G</span> <span class="chord">D</span> <span class="chord">E5</span> <span class="chord">D</span> <span class="chord">A</span> <span class="chord">E5</span>
+            Unser Gott ist heilig, unser Gott ist mächtig
+            <span class="chord">G</span> <span class="chord">D</span> <span class="chord">E5</span> <span class="chord">D</span> <span class="chord">A</span> <span class="chord">E5</span>
+            Lobt den Herrn im Himmel, lobt ihn auf der Erde
+            <span class="chord">G</span> <span class="chord">D</span> <span class="chord">A</span> <span class="chord">D</span> <span class="chord">A</span> <span class="chord">E5</span>
+            Lobt den Herrn mit Singen, lobt den Herrn mit Tanzen
+            <span class="chord">G</span> <span class="chord">D</span>
+            Lobt ihn voll Freude, lobt ihn von Herzen
+            <span class="chord">E</span>
+            Lobt unser Gott
+            
+            <span class="font-bold text-blue-600">[Chorus]</span>
+            <span class="chord">G</span> <span class="chord">D</span> <span class="chord">E</span>
+            Alles was atmet, lobe den Herrn!
+            <span class="chord">G</span> <span class="chord">D</span> <span class="chord">A</span>
+            Alles was atmet, lobe den Herrn!
+            <span class="chord">C</span> <span class="chord">A/C#</span>
+            Halle-lujah, Halle-lujah
+            <span class="chord">B/D#</span> <span class="chord">G</span> <span class="chord">D</span> <span class="chord">E</span>
+            Alles was atmet, lobe den Herrn!</div>
+        </article>
+
+        <article id="s-awesome" class="glass song-card">
+            <h2 class="song-title">Awesome God</h2>
+            <div class="lyrics"><span class="text-pink-600 font-bold text-sm">Key: C</span>
+            <span class="font-bold text-blue-600">[Verse 1]</span>
+            <span class="chord">Am</span>
+            Awesome God, Mighty God
+            <span class="chord">G</span> <span class="chord">Em</span>
+            I give you praise (echo: I give you praise)
+            <span class="chord">Am</span>
+            awesome God (echo: awesome God)
+            
+            <span class="font-bold text-blue-600">[Chorus 1]</span>
+            <span class="chord">F</span>
+            I give you praise (echo: I give you praise)
+            <span class="chord">Am</span>
+            I give you praise (echo: I give you praise)
+            <span class="chord">C</span> <span class="chord">Dm</span> <span class="chord">E</span>
+            You are high and lifted up
+            <span class="chord">Am</span>
+            awesome God
+            
+            <span class="font-bold text-blue-600">[Bridge]</span>
+            <span class="chord">F</span> <span class="chord">G</span>
+            Ohh ohh ohh ohh (echo: ohh ohh ohh ohh)
+            <span class="chord">Am</span>
+            Ohh ohh ohh ohh (echo: ohh awesome God)
+            <span class="chord">F</span> <span class="chord">G</span>
+            This is for you, for you, for you</div>
+        </article>
+
+        <article id="s-better" class="glass song-card">
+            <h2 class="song-title">Better is one day</h2>
+            <div class="lyrics"><span class="text-pink-600 font-bold text-sm">Key: G</span>
+            <span class="font-bold text-blue-600">[Verse 1]</span>
+            <span class="chord">G</span> <span class="chord">C</span> <span class="chord">D</span>
+            How lovely is Your dwelling place, oh Lord Almighty
+            <span class="chord">G</span> <span class="chord">D</span>
+            My soul longs and even faints for You
+            <span class="chord">G</span> <span class="chord">C</span> <span class="chord">D</span>
+            For here my heart is satisfied, within Your presence
+            <span class="chord">G</span> <span class="chord">D</span>
+            I sing beneath the shadow of Your wings
+            
+            <span class="font-bold text-blue-600">[Chorus]</span>
+            <span class="chord">C</span> <span class="chord">D</span>
+            Better is one day in Your courts
+            <span class="chord">C</span> <span class="chord">D</span>
+            Better is one day in Your house
+            <span class="chord">C</span> <span class="chord">D</span>
+            Better is one day in Your courts
+            Than thousands elsewhere</div>
+        </article>
+
+        <article id="s-build" class="glass song-card">
+            <h2 class="song-title">Build Your Church</h2>
+            <div class="lyrics"><span class="text-pink-600 font-bold text-sm">Key: D</span>
+            <span class="font-bold text-blue-600">[Verse 1]</span>
+            <span class="chord">D</span>
+            On Christ alone
+            <span class="chord">G</span> <span class="chord">D</span>
+            Our Chief Cornerstone
+            <span class="chord">Bm</span> <span class="chord">A</span>
+            No other foundation
+            <span class="chord">D</span> <span class="chord">G</span>
+            Can we build upon
+            <span class="chord">Em</span> <span class="chord">D</span> <span class="chord">G</span> <span class="chord">D</span>
+            Not philosophy, Nor the wisdom of man
+            <span class="chord">Bm</span> <span class="chord">A</span> <span class="chord">D</span> <span class="chord">G</span>
+            All other ground Is sinking sand
+            
+            <span class="font-bold text-blue-600">[Chorus]</span>
+            <span class="chord">A</span> <span class="chord">Bm</span> <span class="chord">G</span>
+            Upon this Rock You build Your Church
+            <span class="chord">D</span> <span class="chord">Bm</span> <span class="chord">A</span>
+            And the gates of hell Will not prevail
+            <span class="chord">A</span> <span class="chord">Bm</span> <span class="chord">A</span> <span class="chord">G</span>
+            When we bind and loose, We proclaim Your truth
+            <span class="chord">D</span> <span class="chord">Bm</span> <span class="chord">A</span> <span class="chord">D</span>
+            And in Jesus’ Name We will not fail</div>
+        </article>
+
+        <article id="s-blessed" class="glass song-card">
+            <h2 class="song-title">Blessed Assurance</h2>
+            <div class="lyrics"><span class="text-pink-600 font-bold text-sm">Key: C</span>
+            <span class="font-bold text-blue-600">[Verse 1]</span>
+            <span class="chord">C</span> <span class="chord">F</span> <span class="chord">C</span>
+            Blessed assurance, Jesus is mine!
+            <span class="chord">Am7</span> <span class="chord">G</span> <span class="chord">D</span> <span class="chord">G</span>
+            O what a foretaste of glory divine!
+            <span class="chord">C</span> <span class="chord">F</span> <span class="chord">C</span>
+            Heir of salvation, purchase of God,
+            <span class="chord">Dm</span> <span class="chord">G</span> <span class="chord">C</span>
+            Born of his Spirit, washed in his blood.
+            
+            <span class="font-bold text-blue-600">[Chorus]</span>
+            <span class="chord">C</span> <span class="chord">F</span> <span class="chord">C</span>
+            This is my story, this is my song,
+            <span class="chord">Am7</span> <span class="chord">G</span> <span class="chord">D</span> <span class="chord">G</span>
+            Praising my Savior all the day long;
+            <span class="chord">G7</span> <span class="chord">C</span> <span class="chord">F</span> <span class="chord">C</span>
+            This is my story, this is my song,
+            <span class="chord">Dm</span> <span class="chord">G</span> <span class="chord">C</span>
+            Praising my Savior all the day long.</div>
+        </article>
+
+        <article id="s-cest-bon" class="glass song-card">
+            <h2 class="song-title">C‘est si bon de louer</h2>
+            <div class="lyrics"><span class="chord">Am</span> <span class="chord">Dm</span>
+            C'est si bon de louer Son nom
+            <span class="chord">Em</span> <span class="chord">Am</span>
+            De chanter des louanges
+            <span class="chord">Dm</span>
+            Gloire à Son saint nom
+            <span class="chord">Am</span>
+            De proclamer Sa fidélité
+            <span class="chord">Em</span> <span class="chord">Am</span>
+            Chaque jour, infiniment
+            La, la, la, la, la, la.</div>
+        </article>
+
+        <article id="s-ce-que" class="glass song-card">
+            <h2 class="song-title">Ce que Dieu fait m’émerveille</h2>
+            <div class="lyrics">Ce que Dieu fait m’émerveille
+            Ce que Dieu fait m’émerveille
+            Ce que Dieu fait me dépasse [repeat]
+            
+            Le seigneur dispose tout (en ma faveur)
+            La pluie le beau temps (en ma faveur)
+            Les saisons de l‘année (en ma faveur)
+            Oui tout je dis bien tous (en ma faveur) x2
+            
+            Que toutes mes actions (mes décisions)
+            témoignent de lui (à tout moment)
+            Témoigne de lui.
+            Ainsi je réjouirais (toujours son coeur) x2</div>
+        </article>
+
+        <article id="s-celebrez" class="glass song-card">
+            <h2 class="song-title">Celebrez Jesus</h2>
+            <div class="lyrics">Célébrez, célébrez le Lion Agneau
+            Adorez, adorez le Roi de gloire (x2)
+            
+            Il est bon, Il doit être célébré
+            Il est juste, Il doit être adoré
+            Il est fort, Il doit être célébré
+            Il est saint, Il doit être adoré,
+            adoré, Adoré
+            Adorez Jésus
+            
+            Il est Le plus grand, Il est le plus fort
+            Il est victorieux, l’Agneau de Dieu
+            Il est tout puissant, Il a vaincu la mort
+            Gens de toutes nations, venez Le célébrer (x2)</div>
+        </article>
+
+        <article id="s-celebrez-eternel" class="glass song-card">
+            <h2 class="song-title">Celebrez l‘Eternel / Let us praise our Lord</h2>
+            <div class="lyrics">Célébrez l’Eternel sa grâce est sans pareil
+            jour après jour il est parmi nous
+            nous entoure de ses bras
+            sa grâce sans pareil
+            
+            l’Eternel habitant de la terre
+            il fait pleuvoir ses bontés
+            sur les juste et sur les méchants
+            sa bonté est sans fin
+            Célébrez l’Eternel
+            
+            <span class="text-blue-600 font-bold mt-4 block">[English]</span>
+            Let us praise our Lord,
+            You dweller on the earth
+            He is among us day by day
+            He surrounds us with his Arms
+            Endless is his goodness.
+            
+            Let us clap for our Lord
+            All dweller on the earth,
+            On the righteous and the wicked
+            He pours out goodness and kindness
+            His name has no equal.</div>
+        </article>
+
+        <article id="s-combien" class="glass song-card">
+            <h2 class="song-title">Combien de Chemins / Wie viele Wege</h2>
+            <div class="lyrics"><span class="font-bold text-blue-600">[Chorus]</span>
+            Combien de chemins as-tu parcourus
+            combien de fois, tu as hesité
+            combien de fois tu as été décu
+            combien de fois tu as éte trompé
+            
+            <span class="font-bold text-blue-600">[Verse 1]</span>
+            Tu as besoin d'etre d'aimé
+            Tu as besoin d'etre écouté
+            Besoin d'un ami, besoin de paix,
+            Et tu as cherché, cherché.
+            
+            <span class="text-blue-600 font-bold mt-4 block">[Deutsch]</span>
+            Wie viele Wege hast du zurückgelegt?
+            Wie oft hast du gezögert?
+            Wie oft bist du enttäuscht worden?
+            Wie oft bist du betrogen worden?
+            
+            In deinem Herz du brauchst Liebe
+            du brauchst jemanden,der dir zuhört
+            Du brauchst einen treuen Freund du brauchst
+            Frieden und du hast gesucht,gesucht</div>
+        </article>
+        
+        <article id="s-come" class="glass song-card">
+            <h2 class="song-title">Come, now is the time to worship</h2>
+            <div class="lyrics"><span class="text-pink-600 font-bold text-sm">Key: D</span>
+            <span class="font-bold text-blue-600">[Chorus]</span>
+            <span class="chord">D</span> <span class="chord">Dsus4</span> <span class="chord">D</span>
+            Come, now is the time to wor - ship
+            <span class="chord">A</span> <span class="chord">Em7</span> <span class="chord">D/F#</span> <span class="chord">G</span>
+            Come, now is the time to give your heart
+            <span class="chord">D</span> <span class="chord">Dsus4</span> <span class="chord">D</span>
+            Come, just as you are to wor - ship
+            <span class="chord">A</span> <span class="chord">Em7</span> <span class="chord">D/F#</span> <span class="chord">G</span>
+            Come, just as you are before your God
+            <span class="chord">D</span>
+            Come
+            
+            <span class="font-bold text-blue-600">[Verse 1]</span>
+            <span class="chord">G</span> <span class="chord">D</span>
+            One day every tongue will confess you are God
+            <span class="chord">G</span> <span class="chord">D</span>
+            One day every knee will bow
+            <span class="chord">G</span> <span class="chord">Bm</span>
+            Still the greatest treasure remains
+            <span class="chord">Em7</span> <span class="chord">Asus4</span> <span class="chord">A</span>
+            For those who gladly choose You now</div>
+        </article>
+
+        <article id="s-comment" class="glass song-card">
+            <h2 class="song-title">Comment te dire Ô tendre Père merci</h2>
+            <div class="lyrics">Comment te dire O tendre pere merci merci
+            Comment te dire O tendre pere O merci
+            
+            How to say O tender father thank you thank you
+            How to tell you O tender father O thank you</div>
+        </article>
+
+        <article id="s-danke" class="glass song-card">
+            <h2 class="song-title">Danke Jesus</h2>
+            <div class="lyrics">Ich lass das Leben wie es ist wenn du einverstanden bist Damit bin ich nicht allein
+            Wenn man sich nur zu allen zwängt
+            Und um anerkennung ringt, wird es auch nicht besser sein
+            So wie mich deine Augen seh'n weiß ich das sie mich verstehn Das hat mich fasziniert
+            Von allen Fragen dieser Welt habe ich eine gestellt
+            Was da mit mir passiert
+            
+            Du bist wunderbar
+            Du bist alles wie es sein wird, wie es ist und wie es war Und so lange wie ich bin und wie ich kann Stell ich für dich alles andere hinten an</div>
+        </article>
+
+        <article id="s-days" class="glass song-card">
+            <h2 class="song-title">Days of Elijah</h2>
+            <div class="lyrics"><span class="text-pink-600 font-bold text-sm">Key: G</span>
+            <span class="font-bold text-blue-600">[Verse 1]</span>
+            <span class="chord">G</span> <span class="chord">C</span>
+            These are the days of Elijah,
+            <span class="chord">G</span> <span class="chord">D</span> <span class="chord">G</span>
+            Declaring the word of the Lord,
+            <span class="chord">G</span> <span class="chord">C</span>
+            And these are the days of Your servant, Moses,
+            <span class="chord">G</span> <span class="chord">D</span> <span class="chord">G</span>
+            Righteousness being restored.
+            <span class="chord">Bm</span> <span class="chord">Em</span>
+            And though these are days of great trials,
+            <span class="chord">C</span> <span class="chord">D</span>
+            Of famine and darkness and sword,
+            <span class="chord">G</span> <span class="chord">C</span>
+            Still, we are the voice in the desert crying,
+            <span class="chord">Em7</span> <span class="chord">D</span> <span class="chord">G</span>
+            "Prepare ye the way of the Lord!"
+            
+            <span class="font-bold text-blue-600">[Chorus]</span>
+            <span class="chord">Dsus</span> <span class="chord">D</span> <span class="chord">G</span> <span class="chord">C</span>
+            Behold he comes, riding on the clouds,
+            <span class="chord">G</span> <span class="chord">D</span>
+            Shining like the sun at the trumpet call.
+            <span class="chord">Dsus</span> <span class="chord">D</span> <span class="chord">G</span> <span class="chord">C</span>
+            So lift your voice, it's the year of jubilee,
+            <span class="chord">G</span> <span class="chord">D</span> <span class="chord">G</span>
+            And out of Zion's hill, salvation comes.</div>
+        </article>
+
+        <article id="s-was-fur" class="glass song-card">
+            <h2 class="song-title">Was für ein Gott / Deine Gnade reicht aus</h2>
+            <div class="lyrics"><span class="font-bold text-blue-600">[Verse]</span>
+            <span class="chord">C</span> <span class="chord">C/E</span> <span class="chord">Am</span>
+            Deine Gnade reicht aus, ist mehr als ich brauch´.
+            <span class="chord">F</span> <span class="chord">C</span>
+            Deinem Wort vertraue ich. Zieh´ mich zu dir.
+            <span class="chord">C/E</span> <span class="chord">Am</span> <span class="chord">F</span> <span class="chord">G</span>
+            Ich wart´ auf dich. Mach´ mich neu durch deinen Geist.
+            
+            <span class="font-bold text-blue-600">[Chorus]</span>
+            <span class="chord">C/E</span> <span class="chord">F</span> <span class="chord">Dm</span> <span class="chord">G</span>
+            Jesus hier knie ich vor dir, ja, hier knie ich vor dir,
+            <span class="chord">C/E</span> <span class="chord">F</span>
+            und ich bete dich an.</div>
+        </article>
+
+        <article id="s-der-einzige" class="glass song-card">
+            <h2 class="song-title">Der Einzige / Heilig bist du Herr</h2>
+            <div class="lyrics"><span class="font-bold text-blue-600">[Verse I]</span>
+            <span class="chord">Am</span> <span class="chord">F</span> <span class="chord">G</span>
+            Heilig bist Du, Herr
+            <span class="chord">Am</span> <span class="chord">F</span> <span class="chord">G</span>
+            Du bist heilig, Herr
+            <span class="chord">Am</span> <span class="chord">F</span> <span class="chord">G</span>
+            Du sitzt auf dem Thron
+            <span class="chord">Dm</span> <span class="chord">G</span> <span class="chord">Am</span>
+            Zu Deinen Füßen fühl' ich mich wohl
+            <span class="chord">F</span> <span class="chord">G</span>
+            Kniend vor Deinem Thron
+            
+            <span class="font-bold text-blue-600">[Chorus I]</span>
+            <span class="chord">Am</span> <span class="chord">F</span> <span class="chord">C</span> <span class="chord">G</span>
+            Staunend singe ich zu Dir: Du bist heilig
+            <span class="chord">Am</span> <span class="chord">F</span> <span class="chord">G</span>
+            Deine Herrlichkeit strahlt so schön
+            <span class="chord">Am</span> <span class="chord">F</span> <span class="chord">C</span> <span class="chord">G</span>
+            Mein Blick hebt sich zu Dir und sieht: Du bist heilig
+            <span class="chord">Dm</span> <span class="chord">Am</span> <span class="chord">G</span>
+            Deine Schönheit wird nie vergeh'n</div>
+        </article>
+
+        <article id="s-heilige-geist" class="glass song-card">
+            <h2 class="song-title">Der heilige Geist</h2>
+            <div class="lyrics">Wenn Gott runterkommt, Ja Alles hört auf,
+            Es fließt eine Kraft, Vom Himmel herab.
+            Wenn Gott runterkommt, Er bringt Veränderungen, Es fließt eine Kraft, Vom Himmel herab.
+            
+            Der Heilige Geist ist da x 4
+            Krankheiten laufen weg,
+            Blinden wieder sehen,
+            Die Gelähmten springen vor Freude auf.
+            
+            Durch Seine Macht, Er verändert
+            Durch Seine Macht, Er Heilung bringt
+            Durch Seine Macht, Er stellt wieder her
+            Durch Seine Macht, Er wirkt.</div>
+        </article>
+
+        <article id="s-lowe" class="glass song-card">
+            <h2 class="song-title">Der Löwe und das Lamm</h2>
+            <div class="lyrics"><span class="font-bold text-blue-600">[Verse 1]</span>
+            <span class="chord">G</span> <span class="chord">Am</span> <span class="chord">C</span>
+            Wenn Jesus wiederkommt, beugt sich alle Welt vor ihm.
+            <span class="chord">G</span> <span class="chord">D</span> <span class="chord">C</span>
+            Ketten brechen, wenn zerbroch'ne Herzen ihn verehr'n.
+            <span class="chord">D</span>
+            Denn wer kann unsern Gott aufhalten?
+            
+            <span class="font-bold text-blue-600">[Chorus]</span>
+            <span class="chord">G</span> <span class="chord">D</span> <span class="chord">Em</span>
+            Denn er ist der Löwe, der Löwe von Juda.
+            <span class="chord">D</span> <span class="chord">C</span>
+            Sein Brüllen ist mächtig, er kämpft unsre Kämpfe.
+            <span class="chord">D</span>
+            Und jeder wird sich vor ihm beugen.
+            <span class="chord">G</span> <span class="chord">D</span> <span class="chord">Em</span>
+            Denn er ist das Lamm, geschlachtet für uns,
+            <span class="chord">D</span> <span class="chord">C</span>
+            für die Sünden der Welt, und sein Blut befreit.
+            <span class="chord">D</span> <span class="chord">C</span>
+            Und jeder wird sich beugen vor dem Löwen und dem Lamm.</div>
+        </article>
+        
+        <article id="s-desert" class="glass song-card">
+            <h2 class="song-title">Desert Song</h2>
+            <div class="lyrics"><span class="text-pink-600 font-bold text-sm">Key: D (Capo 2)</span>
+            <span class="font-bold text-blue-600">[Verse 1]</span>
+            <span class="chord">Em</span> <span class="chord">D</span> <span class="chord">C</span> <span class="chord">G</span>
+            This is my prayer in the desert
+            <span class="chord">Em</span> <span class="chord">D</span> <span class="chord">C</span> <span class="chord">G</span>
+            When all that’s within me feels dry
+            <span class="chord">Em</span> <span class="chord">D</span> <span class="chord">C</span> <span class="chord">G</span>
+            This is my prayer in my hunger and need
+            <span class="chord">Em</span> <span class="chord">D</span> <span class="chord">C</span>
+            My God is the God who provides
+            
+            <span class="font-bold text-blue-600">[Chorus]</span>
+            <span class="chord">G</span> <span class="chord">D</span>
+            And I will bring praise, I will bring praise
+            <span class="chord">C</span> <span class="chord">G</span>
+            No weapon formed against me shall remain
+            <span class="chord">D/F#</span> <span class="chord">D</span> <span class="chord">Em</span>
+            I will rejoice, I will declare
+            <span class="chord">C</span> <span class="chord">D</span> <span class="chord">Em</span>
+            God is my victory and He is here</div>
+        </article>
+
+        <article id="s-liebe" class="glass song-card">
+            <h2 class="song-title">Die Liebe Selbst (Outbreakband)</h2>
+            <div class="lyrics"><span class="font-bold text-blue-600">[Verse 1]</span>
+            <span class="chord">Em</span> <span class="chord">C</span> <span class="chord">G</span> <span class="chord">D</span>
+            Was war der Grund für diesen Gott, dessen Wort die Erde schuf,
+            <span class="chord">Em</span> <span class="chord">C</span> <span class="chord">G</span> <span class="chord">D</span>
+            ein Mensch zu werden ohne Thron? Was war der Grund?
+            
+            <span class="font-bold text-blue-600">[Refrain]</span>
+            <span class="chord">Em</span> <span class="chord">C</span>
+            Liebe, die gibt,
+            <span class="chord">G</span> <span class="chord">D</span>
+            Liebe, die trägt,
+            <span class="chord">Em</span> <span class="chord">C</span> <span class="chord">D</span>
+            Liebe, die zu den Schwachen hält.
+            <span class="chord">Bm</span>
+            Er ist die liebe selbst.</div>
+        </article>
+        
+        <article id="s-ehre" class="glass song-card">
+            <h2 class="song-title">Dir gebührt die Ehre / Dir gehört mein Lob</h2>
+            <div class="lyrics"><span class="text-pink-600 font-bold text-sm">Key: G</span>
+            <span class="font-bold text-blue-600">[Verse]</span>
+            <span class="chord">G</span>
+            Dir gebührt die Ehre
+            <span class="chord">Gmaj7</span>
+            Und Anbetung
+            <span class="chord">Am7</span>
+            Wir erheben unsre Hände
+            <span class="chord">C</span> <span class="chord">D</span>
+            Wir erheben deinen Nam'
+            
+            <span class="font-bold text-blue-600">[Chorus]</span>
+            <span class="chord">G</span>
+            Denn du bist groß
+            <span class="chord">G</span> <span class="chord">D/F#</span> <span class="chord">Em</span>
+            Du tust große Wunder groß
+            <span class="chord">Em/D</span> <span class="chord">C</span> <span class="chord">Am</span>
+            Niemand anders ist wie du
+            <span class="chord">Dsus4</span> <span class="chord">D</span>
+            Niemand anders ist wie du</div>
+        </article>
+
+        <article id="s-draw" class="glass song-card">
+            <h2 class="song-title">Draw me close to you</h2>
+            <div class="lyrics"><span class="text-pink-600 font-bold text-sm">Key: G</span>
+            <span class="font-bold text-blue-600">[Verse]</span>
+            <span class="chord">G</span> <span class="chord">C</span>
+            Draw me close to you
+            <span class="chord">Dsus</span> <span class="chord">G</span>
+            Never let me go
+            <span class="chord">Dsus</span> <span class="chord">C</span>
+            I lay it all down again
+            <span class="chord">Em</span> <span class="chord">C</span>
+            To hear you say that I'm your friend
+            
+            <span class="font-bold text-blue-600">[Chorus]</span>
+            <span class="chord">G</span> <span class="chord">D</span> <span class="chord">C</span>
+            You're all I want
+            <span class="chord">G</span> <span class="chord">D</span> <span class="chord">C</span> <span class="chord">D</span>
+            You're all I ever needed
+            <span class="chord">G</span> <span class="chord">D</span> <span class="chord">C</span>
+            You're all I want
+            <span class="chord">Am</span> <span class="chord">D</span> <span class="chord">G</span>
+            Help me know you are near</div>
+        </article>
+
+        <article id="s-hochste" class="glass song-card">
+            <h2 class="song-title">Du bist der höchste, o Herr</h2>
+            <div class="lyrics">Du bist der Höchste, o Herr,
+            über allen Erden
+            Du bist erhoben über alle Götter.
+            
+            Wir erheben dich. Wir erheben Dich.
+            Wir erheben Dich, o Herr!
+            Wir erheben dich. Wir erheben Dich.
+            Wir erheben Dich, o Herr!</div>
+        </article>
+        
+        <article id="s-wunderbar" class="glass song-card">
+            <h2 class="song-title">Du bist Wunderbar Iyé</h2>
+            <div class="lyrics">Du bist Wunderbar Iye
+            Du bist Wunderbar Iye
+            Wunderbar Iye
+            Du bist Wunderbar Iye
+            
+            Iye Iye Iye Iye
+            Iye
+            Ye Ye Ye ye ye ye
+            Yee
+            
+            Du bist Mächtig Iye
+            Du bist Herrlich
+            Du bist Heilig
+            Du bist Kostbar...</div>
+        </article>
+
+<article id="s-croix-paye" class="glass song-card">
+    <h2 class="song-title">À la croix Jésus a tout payé</h2>
+    <div class="lyrics">À la croix Jésus a tout payé
+    Mes péchés, mes maladies
+    Il a tout pris sur Lui
+    Et par Ses meurtrissures
+    Je suis guéri.</div>
+</article>
+
+<article id="s-adonai" class="glass song-card">
+    <h2 class="song-title">Adonai / Er sitzt auf dem Thron</h2>
+    <div class="lyrics">Er sitzt auf dem Thron
+    Und regiert in Majestät
+    Sein Name sei erhöht
+    
+    Gelobt sei der Nam' des Herrn
+    Gelobt, Gelobt
+    Sei der Nam' des Herrn
+    
+    Lobe: loben, loben, loben
+    Unser‘ Allmächtigen Gott
+    
+    <span class="text-sm font-bold text-blue-600 mt-4 block">[English]</span>
+    From the risin' of the sun
+    To the settin' of the same
+    Your name is to be hallowed
+    Praise be the name of the Lord</div>
+</article>
+
+<article id="s-alleluia-amen-eh-yahweh" class="glass song-card">
+    <h2 class="song-title">Alleluia Amen Eh Yahweh</h2>
+    <div class="lyrics">Eh Yahwe
+    Po yo za li Nzambe
+    Oh Yo ZA Nzambe
+    
+    ALLELUIA Amen x3
+    Oh Yo ZA Nzambe
+    
+    Je veux te louer mon Dieu - amen
+    A chaque jour a chaque heure - amen
+    Sois elevé mon Sauveur - Oh Yo ZA Nzambe</div>
+</article>
+
+<article id="s-alleluia-victory" class="glass song-card">
+    <h2 class="song-title">Alleluia You have won the victory</h2>
+    <div class="lyrics">Death could not hold You down
+    You are the risen King
+    Seated in majesty
+    You are the risen King
+    
+    Hallelujah! You have won the victory
+    Hallelujah! You have won it all for me</div>
+</article>
+
+<article id="s-alles-was-atmet" class="glass song-card">
+    <h2 class="song-title">Alles was atmet, lobe den Herrn</h2>
+    <div class="lyrics">Alles was atmet, lobe den Herrn
+    Alles was atmet, lobe den Herrn
+    Lobe den Herrn, meine Seele
+    Lobe den Herrn, meine Seele</div>
+</article>
+
+<article id="s-awesome-god" class="glass song-card">
+    <h2 class="song-title">Awesome God</h2>
+    <div class="lyrics">Our God is an awesome God
+    He reigns from heaven above
+    With wisdom, pow'r and love
+    Our God is an awesome God</div>
+</article>
+
+<article id="s-ben-low" class="glass song-card">
+    <h2 class="song-title">Ben low and see what the Lord can do</h2>
+    <div class="lyrics">Bend low and see what the Lord can do
+    Bend low and see what the Lord can do
+    He's a miracle working God
+    He's a miracle working God</div>
+</article>
+
+<article id="s-better-day" class="glass song-card">
+    <h2 class="song-title">Better is one day</h2>
+    <div class="lyrics">Better is one day in Your courts
+    Better is one day in Your house
+    Better is one day in Your courts
+    Than thousands elsewhere</div>
+</article>
+
+<article id="s-blessed-assurance" class="glass song-card">
+    <h2 class="song-title">Blessed Assurance</h2>
+    <div class="lyrics">Blessed assurance, Jesus is mine!
+    Oh, what a foretaste of glory divine!
+    Heir of salvation, purchase of God,
+    Born of His Spirit, washed in His blood.
+    
+    This is my story, this is my song,
+    Praising my Savior all the day long.</div>
+</article>
+
+<article id="s-build-church" class="glass song-card">
+    <h2 class="song-title">Build Your Church</h2>
+    <div class="lyrics">Build Your church, Lord
+    Make us one, Lord
+    Let Your glory fill this place
+    As we seek Your holy face</div>
+</article>
+
+<article id="s-c-est-si-bon" class="glass song-card">
+    <h2 class="song-title">C‘est si bon de louer</h2>
+    <div class="lyrics">C'est si bon de louer Son nom
+    De chanter des louanges
+    Gloire à Son saint nom
+    De proclamer Sa fidélité
+    Chaque jour, infiniment</div>
+</article>
+
+<article id="s-car-toi-seul" class="glass song-card">
+    <h2 class="song-title">Car toi seul est Dieu</h2>
+    <div class="lyrics">Car toi seul est Dieu
+    Tu es digne de louange
+    Nous levons nos mains vers Toi
+    En signe d'adoration</div>
+</article>
+
+<article id="s-ce-que-dieu-fait" class="glass song-card">
+    <h2 class="song-title">Ce que Dieu fait m’émerveille</h2>
+    <div class="lyrics">Ce que Dieu fait m’émerveille
+    Ce que Dieu fait me dépasse
+    Le Seigneur dispose tout en ma faveur
+    La pluie, le beau temps, en ma faveur</div>
+</article>
+
+<article id="s-celebrez-jesus" class="glass song-card">
+    <h2 class="song-title">Celebrez Jesus</h2>
+    <div class="lyrics">Célébrez, célébrez le Lion Agneau
+    Adorez, adorez le Roi de gloire
+    Il est bon, Il doit être célébré
+    Il est juste, Il doit être adoré</div>
+</article>
+
+<article id="s-celebrez-eternel" class="glass song-card">
+    <h2 class="song-title">Celebrez l‘Eternel / Let us praise our Lord</h2>
+    <div class="lyrics">Célébrez l’Eternel, Sa grâce est sans pareil
+    Jour après jour Il est parmi nous
+    
+    <span class="text-sm font-bold text-blue-600 mt-4 block">[English]</span>
+    Let us praise our Lord, His grace is forever
+    Day after day He is with us</div>
+</article>
+
+<article id="s-combien-chemins" class="glass song-card">
+    <h2 class="song-title">Combien de Chemins / Wie viele Wege</h2>
+    <div class="lyrics">Combien de chemins l'homme doit-il suivre
+    Avant que tu ne l'appelles un homme ?
+    
+    <span class="text-sm font-bold text-blue-600 mt-4 block">[Deutsch]</span>
+    Wie viele Wege muss ein Mensch gehn
+    Bevor man ihn einen Menschen nennt?</div>
+</article>
+
+<article id="s-comment-te-dire" class="glass song-card">
+    <h2 class="song-title">Comment te dire Ô tendre Père merci</h2>
+    <div class="lyrics">Comment te dire Ô tendre Père merci
+    Pour tant d'amour, tant de bienfaits
+    Tu as donné Ton Fils unique
+    Pour me sauver, pour me racheter</div>
+</article>
+
+<article id="s-danke-jesus" class="glass song-card">
+    <h2 class="song-title">Danke Jesus</h2>
+    <div class="lyrics">Danke, Jesus, danke, Jesus
+    Danke, Jesus, in meinem Herz
+    Du hast mir das Heil gegeben
+    Danke, Jesus, in meinem Herz</div>
+</article>
+
+<article id="s-days-elijah" class="glass song-card">
+    <h2 class="song-title">Days of Elijah</h2>
+    <div class="lyrics">These are the days of Elijah
+    Declaring the word of the Lord
+    And these are the days of Your servant Moses
+    Righteousness being restored</div>
+</article>
+
+<article id="s-unendlich-gross" class="glass song-card">
+    <h2 class="song-title">Dein Name ist unendlich groß</h2>
+    <div class="lyrics">Dein Name ist unendlich groß
+    Dein Name ist unendlich groß
+    Deine Majestät ist über den Himmel erhoben
+    Dein Name ist unendlich groß
+    
+    Oh Herr, der Höchste
+    Dein Name ist unendlich groß</div>
+</article>
+
+<article id="s-gnade-reicht" class="glass song-card">
+    <h2 class="song-title">Deine Gnade reicht aus</h2>
+    <div class="lyrics">Deine Gnade reicht aus
+    In meiner Schwachheit bist du stark
+    Deine Gnade reicht aus
+    Deine Hand hält mich fest</div>
+</article>
+
+<article id="s-der-einzige" class="glass song-card">
+    <h2 class="song-title">Der Einzige / Heilig bist du Herr</h2>
+    <div class="lyrics">Du bist der Einzige, dem dieses Lob gebührt
+    Heilig bist Du, Herr
+    Du sitzt auf dem Thron
+    Zu Deinen Füßen fühl ich mich wohl</div>
+</article>
+
+<article id="s-heilige-geist" class="glass song-card">
+    <h2 class="song-title">Der heilige Geist</h2>
+    <div class="lyrics">Der Heilige Geist ist hier
+    Er wirkt mit Kraft in uns
+    Öffne dein Herz für Ihn
+    Lass Dich von Ihm berühren</div>
+</article>
+
+<article id="s-lowe-lamm" class="glass song-card">
+    <h2 class="song-title">Der Löwe und das Lamm</h2>
+    <div class="lyrics">Er ist der Löwe von Juda
+    Er ist das Lamm, das geopfert wurde
+    Die ganze Welt beugt sich vor Ihm
+    Er ist der Herr</div>
+</article>
+
+<article id="s-desert-song" class="glass song-card">
+    <h2 class="song-title">Desert Song</h2>
+    <div class="lyrics">This is my prayer in the desert
+    When all that's within me feels dry
+    This is my prayer in my hunger and need
+    My God is the God who provides</div>
+</article>
+
+<article id="s-dir-geburht" class="glass song-card">
+    <h2 class="song-title">Dir gebührt die Ehre</h2>
+    <div class="lyrics">Dir gebührt die Ehre und Anbetung
+    Wir erheben unsre Hände
+    Wir erheben Deinen Namen</div>
+</article>
+
+<article id="s-hochste" class="glass song-card">
+    <h2 class="song-title">Du bist der höchste, o Herr</h2>
+    <div class="lyrics">Du bist der Höchste, o Herr,
+    über allen Erden
+    Du bist erhoben über alle Götter.
+    
+    Wir erheben dich. Wir erheben Dich.
+    Wir erheben Dich, o Herr!</div>
+</article>
+
+<article id="s-ebenezer" class="glass song-card">
+    <h2 class="song-title">Ebenezer</h2>
+    <div class="lyrics">Ebenezer, Ebenezer
+    Bis hierher hat der Herr geholfen
+    Ebenezer, Ebenezer
+    Seine Treue währt ewiglich</div>
+</article>
+
+<article id="s-every-praise" class="glass song-card">
+    <h2 class="song-title">Every Praise</h2>
+    <div class="lyrics">Every praise is to our God
+    Every word of worship with one accord
+    Every praise, every praise is to our God</div>
+</article>
+
+<article id="s-god-fighting" class="glass song-card">
+    <h2 class="song-title">God is fighting for us/ in Jesus Name</h2>
+    <div class="lyrics">God is fighting for us, God is on our side
+    He has overcome, yes He has overcome
+    We will not be shaken, we will not be moved
+    Jesus You are here</div>
+</article>
+
+<article id="s-he-is-able" class="glass song-card">
+    <h2 class="song-title">He is able</h2>
+    <div class="lyrics">He is able, more than able
+    To accomplish what concerns me today
+    He is able, more than able
+    To handle anything that comes my way</div>
+</article>
+
+<article id="s-heilig-bist-du" class="glass song-card">
+    <h2 class="song-title">Heilig bist Du</h2>
+    <div class="lyrics">Heilig, heilig, heilig bist Du
+    Gott, Herr aller Mächte und Gewalten
+    Erfüllt sind Himmel und Erde
+    Von Deiner Herrlichkeit</div>
+</article>
+
+<article id="s-herr-gnade" class="glass song-card">
+    <h2 class="song-title">Herr deine Gnade</h2>
+    <div class="lyrics">Herr, Deine Gnade ist alles, was ich brauche
+    Sie gibt mir Kraft, wenn ich schwach bin
+    Dein Licht leitet mich durch die Dunkelheit</div>
+</article>
+
+<article id="s-holy-spirit-honor" class="glass song-card">
+    <h2 class="song-title">Holy Spirit we honor You</h2>
+    <div class="lyrics">Holy Spirit, we honor You
+    Spirit of God, we welcome You
+    Fill this place with Your presence
+    Transform our hearts today</div>
+</article>
+
+<article id="s-how-great" class="glass song-card">
+    <h2 class="song-title">How great thou Art</h2>
+    <div class="lyrics">O Lord my God, when I in awesome wonder
+    Consider all the worlds Thy hands have made
+    Then sings my soul, my Savior God, to Thee
+    How great Thou art, how great Thou art!</div>
+</article>
+
+<article id="s-holy-holies" class="glass song-card">
+    <h2 class="song-title">I enter the Holy of Holies</h2>
+    <div class="lyrics">I enter the Holy of Holies
+    I enter through the blood of the Lamb
+    I enter to worship You only
+    I enter to honor I AM</div>
+</article>
+
+<article id="s-know-who-i-am" class="glass song-card">
+    <h2 class="song-title">I Know Who I Am</h2>
+    <div class="lyrics">We are a chosen generation
+    Called forth to show His excellence
+    All I require for life, God has given me
+    And I know who I am</div>
+</article>
+
+<article id="s-i-surrender" class="glass song-card">
+    <h2 class="song-title">I surrender</h2>
+    <div class="lyrics">Here I am, down on my knees again
+    Surrendering all, surrendering all
+    Lord, take control, Your will be done
+    In my life, today</div>
+</article>
+
+<article id="s-il-agira" class="glass song-card">
+    <h2 class="song-title">il agira</h2>
+    <div class="lyrics">Il agira, Il agira
+    Car Il est fidèle à Ses promesses
+    Ne doute pas, garde la foi
+    Le Seigneur agira pour toi</div>
+</article>
+
+<article id="s-in-jesus-name" class="glass song-card">
+    <h2 class="song-title">In Jesus name</h2>
+    <div class="lyrics">In Jesus' name, we have the victory
+    In Jesus' name, the chains are broken
+    He is our healer, He is our strength
+    Nothing is impossible in His name</div>
+</article>
+
+<article id="s-jehovah-jireh" class="glass song-card">
+    <h2 class="song-title">Jehovah Jireh</h2>
+    <div class="lyrics">Jehovah Jireh, my provider
+    His grace is sufficient for me
+    The Lord shall supply all my needs
+    According to His riches in glory</div>
+</article>
+
+<article id="s-jesus-herr" class="glass song-card">
+    <h2 class="song-title">Jesus ist der Herr</h2>
+    <div class="lyrics">Jesus ist der Herr, Jesus ist der Herr
+    Über mein Leben, über diese Welt
+    Wir beugen unsere Knie vor Ihm
+    Und bekennen: Er ist Gott</div>
+</article>
+
+<article id="s-jireh" class="glass song-card">
+    <h2 class="song-title">Jireh</h2>
+    <div class="lyrics">Jireh, You are enough
+    And I will be content in every circumstance
+    You are enough, Jireh</div>
+</article>
+
+<article id="s-keiner-wie-du" class="glass song-card">
+    <h2 class="song-title">Keiner ist wie Du</h2>
+    <div class="lyrics">Keiner ist wie Du, niemand sonst berührt
+    Mein Herz so wie Du es tust
+    Ich könnte suchen bis in Ewigkeit
+    Und fände doch keinen wie Dich</div>
+</article>
+
+<article id="s-king-kings" class="glass song-card">
+    <h2 class="song-title">King of kings</h2>
+    <div class="lyrics">Praise the Father, praise the Son
+    Praise the Spirit, three in one
+    God of glory, Majesty
+    Praise forever to the King of Kings</div>
+</article>
+
+<article id="s-unique-veritable" class="glass song-card">
+    <h2 class="song-title">L'unique et le veritable</h2>
+    <div class="lyrics">Tu es l'unique et le véritable Dieu
+    Nul n'est semblable à Toi
+    Ta puissance est infinie
+    Ton amour ne finit jamais</div>
+</article>
+
+<article id="s-majestat" class="glass song-card">
+    <h2 class="song-title">Majestät</h2>
+    <div class="lyrics">Majestät, herrliche Majestät
+    Ihm sei die Ehre, Lobpreis und Dank
+    Majestät, göttliche Majestät
+    Jesus ist König, Er regiert</div>
+</article>
+
+<article id="s-mighty-save" class="glass song-card">
+    <h2 class="song-title">MIGHTY TO SAVE</h2>
+    <div class="lyrics">Savior, He can move the mountains
+    My God is mighty to save
+    He is mighty to save
+    Forever, Author of salvation</div>
+</article>
+
+<article id="s-no-longer-slaves" class="glass song-card">
+    <h2 class="song-title">No longer Slaves</h2>
+    <div class="lyrics">I'm no longer a slave to fear
+    I am a child of God
+    I'm no longer a slave to fear
+    I am a child of God</div>
+</article>
+
+<article id="s-reckless-love" class="glass song-card">
+    <h2 class="song-title">Reckless love</h2>
+    <div class="lyrics">Oh, the overwhelming, never-ending, reckless love of God
+    Oh, it chases me down, fights 'til I'm found, leaves the ninety-nine
+    I couldn't earn it, and I don't deserve it, still, You give Yourself away</div>
+</article>
+
+<article id="s-anthem" class="glass song-card">
+    <h2 class="song-title">The Anthem (Todd Dulaney)</h2>
+    <div class="lyrics">Hallelujah, You have won the victory
+    Hallelujah, You have won it all for me
+    Death could not hold You down
+    You are the risen King</div>
+</article>
+
+<article id="s-goodness-god" class="glass song-card">
+    <h2 class="song-title">The goodness of God</h2>
+    <div class="lyrics">All my life You have been faithful
+    All my life You have been so, so good
+    With every breath that I am able
+    Oh, I will sing of the goodness of God</div>
+</article>
+
+<article id="s-infiniment-grand" class="glass song-card">
+    <h2 class="song-title">Ton Nom est infiniment grand</h2>
+    <div class="lyrics">Ton Nom est infiniment grand
+    Que Ton Nom est infiniment grand
+    Ta majesté se lève au-dessus des cieux
+    Que ton Nom est infiniment grand
+    
+    Ô Dieu, très haut
+    Que ton Nom est infiniment grand</div>
+</article>
+
+<article id="s-was-fur-ein-gott" class="glass song-card">
+    <h2 class="song-title">Was für ein Gott / Deine Gnade reicht aus</h2>
+    <div class="lyrics">Was für ein Gott, der unsre Sorgen trägt
+    Was für ein Gott, der uns so sehr liebt
+    Deine Gnade reicht aus für mich</div>
+</article>
+
+<article id="s-way-maker" class="glass song-card">
+    <h2 class="song-title">Way Maker</h2>
+    <div class="lyrics">Way maker, miracle worker, promise keeper
+    Light in the darkness, my God
+    That is who You are</div>
+</article>
+
+<article id="s-beautiful-name" class="glass song-card">
+    <h2 class="song-title">What a Beautiful Name</h2>
+    <div class="lyrics">What a beautiful Name it is
+    What a beautiful Name it is
+    The Name of Jesus Christ my King</div>
+</article>
+
+<article id="s-infinitely-great" class="glass song-card">
+    <h2 class="song-title">Your name is infinitely great</h2>
+    <div class="lyrics">Your name is infinitely great
+    Your name is infinitely great
+    Your majesty reaches high onto the heaven
+    And your name is infinitely great
+    
+    O Lord, Most High
+    Your name is infinitely great</div>
+</article>
+
+
+
+        <div class="text-center text-slate-500 py-10 italic">
+            Pour ajouter les autres chants, copiez la structure des balises &lt;article&gt; dans le code HTML.
+        </div>
+
+    </main>
+
+</body>
+</html>

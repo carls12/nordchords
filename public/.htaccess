@@ -1,0 +1,6 @@
+Options -Indexes
+
+RewriteEngine On
+
+# Optional pretty URL support
+RewriteRule ^song/([0-9]+)/?$ song.php?id=$1 [L,QSA]

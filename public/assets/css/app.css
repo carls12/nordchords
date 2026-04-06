@@ -1,0 +1,278 @@
+:root {
+    --bg-top: #fff2e0;
+    --bg-bottom: #d9f1ff;
+    --panel: #ffffff;
+    --ink: #122136;
+    --muted: #5f6b7d;
+    --line: #d8e1ec;
+    --accent: #f05d23;
+    --accent-2: #0f80f7;
+}
+
+body {
+    min-height: 100vh;
+    color: var(--ink);
+    overflow-x: hidden;
+    background:
+        radial-gradient(circle at 15% 15%, #ffe0be 0%, transparent 35%),
+        radial-gradient(circle at 85% 10%, #cae9ff 0%, transparent 38%),
+        linear-gradient(160deg, var(--bg-top), var(--bg-bottom));
+}
+
+.top-shell {
+    padding: 1rem 0;
+}
+
+.top-shell-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.brand-pill {
+    text-decoration: none;
+    color: var(--ink);
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.65rem 0.95rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #ffffff;
+    box-shadow: 0 8px 22px rgba(18, 33, 54, 0.08);
+}
+
+.desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+}
+
+.nav-pill {
+    text-decoration: none;
+    color: var(--ink);
+    font-size: 0.92rem;
+    font-weight: 600;
+    padding: 0.52rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    transition: all 0.15s ease;
+}
+
+.nav-pill:hover,
+.nav-pill.is-active {
+    border-color: #ffd2bf;
+    background: #fff5ef;
+    color: #a54718;
+}
+
+.main-shell {
+    padding-top: 0.25rem !important;
+    padding-bottom: calc(6.5rem + env(safe-area-inset-bottom, 0px)) !important;
+}
+
+.app-panel {
+    background: rgba(255, 255, 255, 0.74);
+    backdrop-filter: blur(8px);
+    border: 1px solid #ffffff;
+    border-radius: 1.1rem;
+    padding: 1rem;
+    box-shadow: 0 14px 36px rgba(18, 33, 54, 0.09);
+}
+
+.song-card {
+    border-radius: 0.95rem;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.song-theme {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.85) !important;
+    background:
+        radial-gradient(circle at 15% 20%, var(--song-a, #f7e9df) 0%, transparent 48%),
+        radial-gradient(circle at 85% 0%, var(--song-b, #dcecff) 0%, transparent 50%),
+        linear-gradient(145deg, #fff, var(--song-c, #f6f8ff));
+}
+
+.song-theme::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(120deg, rgba(255, 255, 255, 0.45), transparent 35%),
+        repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0 8px, rgba(255, 255, 255, 0) 8px 16px);
+}
+
+.song-theme .card-body {
+    position: relative;
+    z-index: 1;
+}
+
+.song-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+.song-theme h2 {
+    color: var(--song-ink, var(--ink));
+}
+
+.song-hero {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.95rem;
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    padding: 0.9rem 1rem;
+    background:
+        radial-gradient(circle at 12% 18%, var(--song-a, #f7e9df) 0%, transparent 48%),
+        radial-gradient(circle at 88% 2%, var(--song-b, #dcecff) 0%, transparent 50%),
+        linear-gradient(145deg, #fff, var(--song-c, #f6f8ff));
+}
+
+.song-hero h1 {
+    color: var(--song-ink, var(--ink));
+}
+
+.lyrics-box {
+    background: #fff;
+    border-radius: 0.9rem;
+    border: 1px solid var(--line);
+    padding: 1rem;
+}
+
+.lyric-line {
+    font-family: "Consolas", "Courier New", monospace;
+    white-space: pre-wrap;
+    word-break: break-word;
+    line-height: 1.7;
+}
+
+.chord {
+    color: var(--accent-2);
+    font-weight: 700;
+}
+
+.mobile-bottom-nav {
+    position: fixed;
+    left: 0.6rem;
+    right: 0.6rem;
+    bottom: max(0.6rem, env(safe-area-inset-bottom, 0px));
+    display: none;
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    gap: 0.35rem;
+    padding: 0.4rem;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 16px 40px rgba(10, 24, 43, 0.16);
+    z-index: 1030;
+}
+
+.table-responsive {
+    -webkit-overflow-scrolling: touch;
+}
+
+.mobile-nav-item {
+    text-decoration: none;
+    color: var(--muted);
+    border-radius: 0.75rem;
+    padding: 0.45rem 0.35rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    min-height: 3.2rem;
+}
+
+.mobile-nav-item i {
+    font-size: 1rem;
+}
+
+.mobile-nav-item.is-active {
+    color: #9f3f15;
+    background: #ffe9df;
+}
+
+@media (max-width: 991.98px) {
+    .desktop-nav {
+        display: none;
+    }
+
+    .mobile-bottom-nav {
+        display: grid;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .top-shell {
+        padding: 0.75rem 0 0.55rem;
+    }
+
+    .top-shell-inner {
+        justify-content: center;
+    }
+
+    .brand-pill {
+        width: 100%;
+        justify-content: center;
+        font-size: 0.95rem;
+        padding: 0.62rem 0.8rem;
+    }
+
+    .main-shell {
+        padding-top: 0.1rem !important;
+    }
+
+    .app-panel {
+        padding: 0.75rem;
+        border-radius: 0.95rem;
+    }
+
+    .lyrics-box {
+        padding: 0.8rem;
+    }
+
+    .song-hero {
+        padding: 0.8rem 0.85rem;
+    }
+
+    .mobile-nav-item {
+        min-height: 3rem;
+        font-size: 0.68rem;
+        padding: 0.4rem 0.2rem;
+    }
+
+    .mobile-nav-item i {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+
+    .mobile-bottom-nav {
+        left: 0.4rem;
+        right: 0.4rem;
+        gap: 0.25rem;
+        padding: 0.3rem;
+    }
+
+    .mobile-nav-item {
+        border-radius: 0.62rem;
+    }
+
+    .input-group .form-control,
+    .input-group .btn {
+        min-height: 2.6rem;
+    }
+}

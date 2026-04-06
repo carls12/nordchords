@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="Chord App logo">
+  <rect width="128" height="128" rx="24" fill="#0d6efd"/>
+  <path d="M42 36h12v56H42zM74 24h12v72H74z" fill="#fff"/>
+  <circle cx="48" cy="96" r="10" fill="#fff"/>
+  <circle cx="80" cy="100" r="10" fill="#fff"/>
+</svg>
