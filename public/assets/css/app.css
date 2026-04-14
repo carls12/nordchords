@@ -276,3 +276,247 @@ body {
         min-height: 2.6rem;
     }
 }
+
+/* New Song Display Styles */
+
+.song-hero-section {
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 1.1rem;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    padding: 2rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(8px);
+}
+
+.song-hero-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 15% 20%, var(--song-a, #f7e9df) 0%, transparent 48%),
+        radial-gradient(circle at 85% 0%, var(--song-b, #dcecff) 0%, transparent 50%),
+        linear-gradient(145deg, transparent, rgba(255, 255, 255, 0.3));
+}
+
+.song-hero-section > * {
+    position: relative;
+    z-index: 1;
+}
+
+.song-hero-section h1 {
+    color: var(--song-ink, var(--ink));
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.song-hero-section .lead {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.song-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.rating-stars {
+    display: inline-flex;
+    gap: 0.2rem;
+    font-size: 1.1rem;
+}
+
+.song-metadata {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.song-metadata .badge {
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+}
+
+/* Control Toolbar */
+
+.control-toolbar {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(200, 200, 200, 0.3);
+    border-radius: 0.8rem;
+    backdrop-filter: blur(6px);
+}
+
+.control-toolbar label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.control-toolbar .btn-group {
+    display: inline-flex;
+}
+
+.control-toolbar .btn-group-sm {
+    gap: 0;
+}
+
+.control-toolbar .btn {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.6rem;
+    border-color: #d0d0d0;
+    color: #555;
+    font-weight: 600;
+}
+
+.control-toolbar .btn:hover,
+.control-toolbar .btn.active {
+    background: var(--accent-2);
+    color: white;
+    border-color: var(--accent-2);
+}
+
+.control-toolbar .btn.disabled {
+    pointer-events: none;
+    background: transparent;
+    border-color: transparent;
+    color: #999;
+}
+
+/* Chord Display Card */
+
+.chord-display-card {
+    background: #ffffff;
+    border-radius: 1rem;
+    border: 1px solid #e8e8e8;
+    transition: box-shadow 0.3s ease;
+}
+
+.chord-display-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.lyrics-box {
+    font-family: "Menlo", "Consolas", "Courier New", monospace;
+    font-size: 16px;
+    line-height: 1.8;
+    letter-spacing: 0.3px;
+    background: #fafafa;
+    border-radius: 0.7rem;
+    border: 1px solid #f0f0f0;
+    padding: 1.5rem;
+    color: #333;
+    transition: font-size 0.2s ease;
+}
+
+.lyric-line {
+    margin: 0;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    overflow-x: auto;
+}
+
+.chord {
+    color: #0f80f7;
+    font-weight: 700;
+    background: rgba(15, 128, 247, 0.08);
+    padding: 0.1rem 0.3rem;
+    border-radius: 0.3rem;
+    font-size: 0.95em;
+    transition: all 0.2s ease;
+}
+
+.chord:hover {
+    background: rgba(15, 128, 247, 0.15);
+    color: #0a5cc4;
+}
+
+/* Responsive Control Toolbar */
+
+@media (max-width: 768px) {
+    .control-toolbar label {
+        display: none;
+    }
+
+    .song-hero-section {
+        padding: 1.5rem 1rem;
+    }
+
+    .lyrics-box {
+        padding: 1rem;
+        font-size: 14px;
+    }
+}
+
+/* Print Styles */
+
+@media print {
+    body {
+        background: white;
+    }
+
+    .control-toolbar,
+    .top-shell,
+    .mb-3,
+    .mb-4,
+    a[href],
+    .btn {
+        display: none;
+    }
+
+    .main-shell {
+        padding: 0 !important;
+    }
+
+    .app-panel {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+        background: white;
+        backdrop-filter: none;
+    }
+
+    .song-hero-section {
+        background: white;
+        border: none;
+        box-shadow: none;
+        padding: 0 0 1.5rem 0;
+        page-break-after: avoid;
+    }
+
+    .song-hero-section h1 {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .song-metadata,
+    .song-rating {
+        margin-bottom: 1rem;
+    }
+
+    .lyrics-box {
+        background: white;
+        border: none;
+        padding: 0;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .chord {
+        background: none;
+        padding: 0;
+    }
+
+    .card {
+        border: none;
+        background: white;
+        box-shadow: none;
+    }
+}

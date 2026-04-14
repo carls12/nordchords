@@ -65,12 +65,13 @@ $song = [
     'title' => '',
     'artist' => '',
     'audio_url' => '',
+    'song_key' => '',
+    'tuning' => 'Standard (E A D G B E)',
+    'difficulty' => 'Novice',
 ];
 
 if ($isEdit) {
-    $sql = $hasAudioColumn
-        ? 'SELECT id, title, artist, audio_url FROM songs WHERE id = ? LIMIT 1'
-        : "SELECT id, title, artist, '' AS audio_url FROM songs WHERE id = ? LIMIT 1";
+    $sql = 'SELECT id, title, artist, audio_url, song_key, tuning, difficulty FROM songs WHERE id = ? LIMIT 1';
     $stmt = db()->prepare($sql);
     $stmt->execute([$id]);
     $existing = $stmt->fetch();
@@ -88,6 +89,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $title = post('title');
     $artist = post('artist');
+    $songKey = post('song_key');
+    $tuning = post('tuning');
+    $difficulty = post('difficulty');
     $audioUrl = $hasAudioColumn ? post('audio_url') : '';
     $uploadedAudioUrl = process_song_audio_upload_if_any($hasAudioColumn);
 
@@ -106,24 +110,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($isEdit) {
-        $sql = $hasAudioColumn
-            ? 'UPDATE songs SET title = ?, artist = ?, audio_url = ?, updated_at = NOW() WHERE id = ?'
-            : 'UPDATE songs SET title = ?, artist = ?, updated_at = NOW() WHERE id = ?';
+        $sql = 'UPDATE songs SET title = ?, artist = ?, audio_url = ?, song_key = ?, tuning = ?, difficulty = ?, updated_at = NOW() WHERE id = ?';
         $stmt = db()->prepare($sql);
-        $params = $hasAudioColumn
-            ? [$title, $artist, $audioUrl, $id]
-            : [$title, $artist, $id];
-        $stmt->execute($params);
+        $stmt->execute([$title, $artist, $audioUrl, $songKey, $tuning, $difficulty, $id]);
         flash_set('success', t('song_updated'));
     } else {
-        $sql = $hasAudioColumn
-            ? 'INSERT INTO songs (title, artist, audio_url) VALUES (?, ?, ?)'
-            : 'INSERT INTO songs (title, artist) VALUES (?, ?)';
+        $sql = 'INSERT INTO songs (title, artist, audio_url, song_key, tuning, difficulty) VALUES (?, ?, ?, ?, ?, ?)';
         $stmt = db()->prepare($sql);
-        $params = $hasAudioColumn
-            ? [$title, $artist, $audioUrl]
-            : [$title, $artist];
-        $stmt->execute($params);
+        $stmt->execute([$title, $artist, $audioUrl, $songKey, $tuning, $difficulty]);
         $id = (int) db()->lastInsertId();
         flash_set('success', t('song_created'));
     }
@@ -153,6 +147,26 @@ require_once __DIR__ . '/../includes/layout_top.php';
                 <label class="form-label"><?= e(t('artist')) ?></label>
                 <input type="text" class="form-control" name="artist" value="<?= e($song['artist']) ?>">
             </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Song Key</label>
+                <input type="text" class="form-control" name="song_key" placeholder="e.g., C, G, Am" value="<?= e($song['song_key']) ?>">
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Tuning</label>
+                <input type="text" class="form-control" name="tuning" placeholder="e.g., Standard (E A D G B E)" value="<?= e($song['tuning']) ?>">
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Difficulty</label>
+                <select class="form-select" name="difficulty">
+                    <option value="Novice" <?= ($song['difficulty'] === 'Novice' ? 'selected' : '') ?>>Novice</option>
+                    <option value="Beginner" <?= ($song['difficulty'] === 'Beginner' ? 'selected' : '') ?>>Beginner</option>
+                    <option value="Intermediate" <?= ($song['difficulty'] === 'Intermediate' ? 'selected' : '') ?>>Intermediate</option>
+                    <option value="Advanced" <?= ($song['difficulty'] === 'Advanced' ? 'selected' : '') ?>>Advanced</option>
+                    <option value="Expert" <?= ($song['difficulty'] === 'Expert' ? 'selected' : '') ?>>Expert</option>
+                </select>
+            </div>
+
             <?php if ($hasAudioColumn): ?>
                 <div class="col-12">
                     <label class="form-label"><?= e(t('audio_url_label')) ?></label>

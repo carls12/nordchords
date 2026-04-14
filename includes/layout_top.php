@@ -44,6 +44,7 @@ function nav_active(string $needle, string $path): string
                 <a class="nav-pill" href="<?= e(url('admin/logout.php')) ?>"><?= e(t('logout')) ?></a>
             <?php elseif ($isUserLoggedIn): ?>
                 <a class="nav-pill <?= nav_active('/public/index.php', $path) ?>" href="<?= e(url('public/index.php')) ?>"><?= e(t('songs')) ?></a>
+                <a class="nav-pill <?= nav_active('/public/songbook.php', $path) ?>" href="<?= e(url('public/songbook.php')) ?>"><i class="bi bi-bookmark-fill me-1"></i>My Songbook</a>
                 <a class="nav-pill <?= nav_active('/public/settings.php', $path) ?>" href="<?= e(url('public/settings.php')) ?>"><?= e(t('settings')) ?></a>
                 <a class="nav-pill <?= nav_active('/public/profile.php', $path) ?>" href="<?= e(url('public/profile.php')) ?>"><?= e(t('profile')) ?></a>
                 <a class="nav-pill" href="<?= e(url('public/logout.php')) ?>"><?= e(t('logout')) ?></a>
